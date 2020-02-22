@@ -1,54 +1,27 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+/* eslint react/no-did-mount-set-state: 0 */
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import logo from './movieTtl.gif';
 import './App.css';
+import MoviesList from './MoviesList';
+import MovieDetail from './MovieDetail';
 
-class App extends Component {
-  state = {
-    input: 'Hello'
-  };
-
-  updateInput = event => {
-    this.setState({
-      input: event.target.value.trim()
-    });
-  };
-
-  submit = () => {
-    console.log(this.text.value);
-  };
-
-  render() {
-    return (
-      <div className='App'>
-        <header className='App-header'>
+const App = () => (
+  <Router>
+    <div className='App'>
+      <header className='App-header'>
+        <Link to='/'>
           <img src={logo} className='App-logo' alt='logo' />
-          <Welcome text='Welcome to Using Props' />
-        </header>
-        <p className='App-intro' ref={input => (this.text = input)}>
-          aloha
-        </p>
-        <h3>{this.state.input}</h3>
-        <input
-          type='text'
-          onChange={this.updateInput}
-          value={this.state.input}
-        />{' '}
-        <input type='text' ref={input => (this.text = input)} />
-        <button onClick={this.submit}>Show Value</button>
-      </div>
-    );
-  }
-}
+        </Link>
+      </header>
+      <Switch>
+        <Route exact path='/' component={MoviesList} />
+        <Route path='/:id' component={MovieDetail} />
+      </Switch>
+    </div>
+  </Router>
+);
 
-const name = function(input) {
-  this.input = input;
-};
-
-class Welcome extends Component {
-  render() {
-    const { text } = this.props;
-    return <h1 className='App-title'>{text}</h1>;
-  }
-}
+const Test = ({ match }) => <h1>{match.params.id}</h1>;
 
 export default App;

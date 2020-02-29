@@ -14,7 +14,9 @@ class MovieDetail extends Component {
 
   async componentDidMount() {
     try {
-      const res = await fetch(`API_token`);
+      const res = await fetch(
+        `https://api.themoviedb.org/3/movie/${this.props.match.params.id}?api_key=cb8caa376849f91aba728a310d056548&language=en-US`
+      );
       const movie = await res.json();
       this.setState({
         movie

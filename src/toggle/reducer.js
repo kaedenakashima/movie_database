@@ -1,4 +1,4 @@
-import { TOGGLE_MESSAGE } from './actions';
+import { TOGGLE_MESSAGE, GET_MOVIES } from './actions';
 
 const initialState = {
   messageVisibility: false
